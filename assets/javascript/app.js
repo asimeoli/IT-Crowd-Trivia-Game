@@ -31,6 +31,7 @@ function question(prompt, answers, correctAnswer, picture, GIF) {
 function loadQuestion(n) {
     currentQuestion = n;
     $('#answerPanel').empty();
+    //to use q outside of this function
     var q = questions[n];
     $('#questionPanel').html('<p>' + q.prompt + '</p>');
     $('#imagePanel').html('<img src="' + q.picture + '">');
@@ -44,9 +45,6 @@ function loadQuestion(n) {
             $('#' + buttonID).on("click", wrongAnswer);
         }
     }
-
-    console.log(questions[n]);
-    //TODO: display question on HTML
 }
 
 //Loading next question
@@ -65,7 +63,7 @@ function startQuestionTimer() {
     if (intervalId != 0) {
         clearInterval(intervalId);
     }
-    questionTime = 15;
+    questionTime = 12;
     $('#display').html('<p>' + questionTime.toString() + '</p>');
     intervalId = setInterval(tick, 1000);
 }
@@ -75,7 +73,8 @@ function stopQuestionTimer() {
     intervalId = 0;
     $('#display').html('<p> Get Ready </p>');
 }
-//
+
+//When the answer is correct
 function rightAnswer() {
     stopQuestionTimer();
     $('#answerPanel').empty();
@@ -83,19 +82,20 @@ function rightAnswer() {
     $('#imagePanel').html('<img src="' + questions[currentQuestion].GIF + '">');
     rightAnswers++;
     $('#correct').html('<p> Correct: ' + rightAnswers.toString() + '</p>');
-    setTimeout(loadNextQuestion, 1000 * 6);
+    setTimeout(loadNextQuestion, 1000 * 4);
 }
 
-//
+//When the answer is wrong
 function wrongAnswer() {
     stopQuestionTimer();
     $('#answerPanel').empty();
     $('#answerPanel').html('<p> Wrong! </p>');
     wrongAnswers++;
     $('#wrong').html('<p> Wrong: ' + wrongAnswers.toString() + '</p>');
-    setTimeout(loadNextQuestion, 1000 * 3);
+    setTimeout(loadNextQuestion, 1000 * 4);
 }
 
+//When there are no more questions left and the game is over
 function gameOver() {
     $('#answerPanel').empty();
     $('#questionPanel').empty();
