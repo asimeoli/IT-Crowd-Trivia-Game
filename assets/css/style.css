@@ -1,0 +1,26 @@
+body {
+    background-image: url('https://images5.alphacoders.com/354/354111.jpg');
+}
+
+.navbar,
+h1,
+h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+p {
+    font-size: 30px;
+}
+
+.btn-primary {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.imagePanel {
+    margin: 20px;
+}
+
+.questionPanel {
+    font-size: 30px;
+}
